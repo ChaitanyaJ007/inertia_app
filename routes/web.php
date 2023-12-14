@@ -26,7 +26,7 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/users', UserIndexController::class)->name('users.index');
+Route::get('/users', UserIndexController::class);
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
