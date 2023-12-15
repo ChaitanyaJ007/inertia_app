@@ -2,6 +2,7 @@
 
 use Inertia\Testing\AssertableInertia;
 use App\Http\Middleware\HandleInertiaRequests;
+use Illuminate\Support\Arr;
 
 it('contains the current selected language', function (){
     app()->setLocale('en');
@@ -19,4 +20,13 @@ it('contains a list of available languages', function () {
             ->where('languages.1.value', 'de')
             ->where('languages.1.label', 'Deutsch');
     });
+});
+
+it('contains all translations', function() {
+  $this->get('/')
+  ->assertInertia(function(AssertableInertia $page) {
+    expect(Arr::get($page->toArray(), 'props.translations'))->toMatchArray([
+        'auth.failed' => 'These credentials do not match our records.'
+    ]);
+  });
 });
