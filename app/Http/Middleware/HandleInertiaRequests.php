@@ -7,6 +7,7 @@ use App\Http\Resources\LanguageResource;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 use Tightenco\Ziggy\Ziggy;
+use Illuminate\Foundation\Application;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -37,6 +38,7 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user(),
             ],
+            'language' => app()->getLocale(), // en
             'languages' => LanguageResource::collection(Lang::cases()),
             'ziggy' => fn () => [
                 ...(new Ziggy)->toArray(),

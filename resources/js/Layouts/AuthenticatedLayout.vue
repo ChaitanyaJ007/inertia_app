@@ -38,7 +38,7 @@ const showingNavigationDropdown = ref(false);
                         <div class="hidden sm:flex sm:items-center sm:ms-6">
                             <div class="ms-3 relative">
                                 <select name="language" id="language">
-                                    <option :value="language.value" v-for="language in $page.props.languages" :key="language.value">
+                                    <option :value="language.value" v-for="language in $page.props.languages" :key="language.value" :selected="language.value == $page.props.language">
                                     {{ language.label }}</option>
                                 </select>
                             </div>
